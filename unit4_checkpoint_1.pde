@@ -13,8 +13,8 @@
  color grey = #7C7B7A;
 float x, y;
 void setup(){
-  size(1000, 1000); 
-  scale(1.22);
+  size(1000, 800); 
+  scale(.92);
     background(midwhite);
 
 
