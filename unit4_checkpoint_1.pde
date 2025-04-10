@@ -11,13 +11,28 @@
  color white = #FFFFFF;
  color B = #000000;
  color grey = #7C7B7A;
-
+float x, y;
 void setup(){
   size(1000, 1000); 
   scale(1.22);
     background(midwhite);
-  house(200, 300, 0.3); 
-  house(random(500, 700), random(300,500), random(0.25,2)); 
+
+
+
+int count=1;
+ while(count<20){
+ house(x, y, random(0.25,2)); 
+ x=x+200;
+ if(x<1000){
+   x=x+50;
+ }
+ else{
+   x=0;
+    y=y+300;
+ }
+ count+=1;
+ }
+  //house(random(500, 700), random(300,500), random(0.25,2)); 
 }
 
 void draw(){ 
@@ -27,8 +42,8 @@ void draw(){
 void house(float x, float y, float s) {
   pushMatrix(); 
   translate(x, y); 
-  scale(s);
-  rotate(PI/12);
+ 
+  
 float r,  g,  b;
 r= random(0,255);
 g=random(0,255);
@@ -45,13 +60,23 @@ b= random(0,255);
 }
 
 void body(){
-  fill(lb);
+    float r,  g,  b;
+r= random(0,255);
+g=random(0,255);
+b= random(0,255);
+  
+  
+  fill(r,g,b);
   stroke(black);
   rect(0, 100, 100, 100); 
 }
 
 void roof(){
-  fill(DB);
+    float r,  g,  b;
+r= random(0,255);
+g=random(0,255);
+b= random(0,255);
+  fill(r,g,b);
   stroke(black);
   triangle(0, 100, 50, 50, 100, 100);
 }
@@ -74,7 +99,12 @@ b= random(0,255);
 
 
 void door(){
-  fill(ldb);
+   float r,  g,  b;
+r= random(0,255);
+g=random(0,255);
+b= random(0,255);
+  
+  fill(r,g,b);
   stroke(black);
   rect(30, 150, 25, 50); 
 }
