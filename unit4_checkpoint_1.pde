@@ -11,17 +11,19 @@
  color white = #FFFFFF;
  color B = #000000;
  color grey = #7C7B7A;
-float x, y;
+float x, y,s=1 ;
 void setup(){
   size(1000, 800); 
-  scale(.92);
+  
     background(midwhite);
-
+   scale(0.92);
 
 
 int count=1;
  while(count<20){
- house(x, y, random(0.25,2)); 
+   float s = random(0.5, 1.5);
+ house(x, y,s); 
+
  x=x+200;
  if(x<1000){
    x=x+50;
@@ -29,8 +31,10 @@ int count=1;
  else{
    x=0;
     y=y+300;
+    
  }
  count+=1;
+ 
  }
   //house(random(500, 700), random(300,500), random(0.25,2)); 
 }
@@ -42,13 +46,13 @@ void draw(){
 void house(float x, float y, float s) {
   pushMatrix(); 
   translate(x, y); 
- 
+ scale(s);
   
 float r,  g,  b;
 r= random(0,255);
 g=random(0,255);
 b= random(0,255);
- 
+ s= random(.2,3);
   
   body();
   
