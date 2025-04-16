@@ -12,30 +12,38 @@
  color B = #000000;
  color grey = #7C7B7A;
 float x, y,s=1 ;
+int starCount;
+int rectstarCount;
+float angle;
 void setup(){
   size(1000, 800); 
   
-    background(midwhite);
-   scale(0.92);
+    background(216,222,231);
 
+  
+    //drawGradient(color(255, 0, 0), color(0, 0, 255)); // 
+drawStar();
+   rectstar();
 
 int count=1;
- while(count<20){
+ while(count<5){
    float s = random(0.5, 1.5);
- house(x, y,s); 
+ house(x, y+450,s); 
 
- x=x+200;
+ x=x+300;
  if(x<1000){
-   x=x+50;
+   x=x+0;
  }
  else{
    x=0;
-    y=y+300;
+    y=y+00;
     
  }
  count+=1;
  
  }
+   // drawStar();
+   //rectstar();
   //house(random(500, 700), random(300,500), random(0.25,2)); 
 }
 
@@ -112,3 +120,52 @@ b= random(0,255);
   stroke(black);
   rect(30, 150, 25, 50); 
 }
+
+
+void drawStar() {
+  int starCount = 0;
+  while (starCount < 222) {
+    float x = random(width);
+    float y = random(height);
+    float size = random(1, 3);
+    fill(255);
+    ellipse(x, y, size, size);
+    starCount = starCount + 1; 
+  }
+}
+
+
+
+void rectstar() {
+  int rectstarCount = 0;
+  while (rectstarCount < 345) {
+    float x = random(width);
+    float y = random(height);
+    float size = random(0.5,5);
+   
+     pushMatrix(); 
+   translate(width/2, height/2); 
+    int  count=0; 
+    while(count<100){
+    rotate(radians(angle));
+   fill(122,0,255);
+    rect(x,y, size,size);  
+    count=count+1;
+   angle+=0.5;  
+  }
+    
+  
+    rectstarCount = rectstarCount + 1; 
+     popMatrix();
+  }
+}
+
+
+//void drawGradient(color c1, color c2) {
+//  for (int y = 0; y < height; y++) {
+//    float inter = map(y, 0, height, 0, 1);
+//    color c = lerpColor(c1, c2, inter);
+//    stroke(c);
+//    line(0, y, width, y);
+//  }
+//}
