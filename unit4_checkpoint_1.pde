@@ -11,26 +11,42 @@
  color white = #FFFFFF;
  color B = #000000;
  color grey = #7C7B7A;
-float x, y,s=1 ;
+float x=0, y=0,s=1 ;
 int starCount;
-int rectstarCount;
+int rectstarCount,ufo;
 float angle;
 void setup(){
   size(1000, 800); 
   
-    background(216,222,231);
+    background(0);
 
   
-    //drawGradient(color(255, 0, 0), color(0, 0, 255)); // 
+
 drawStar();
    rectstar();
+int UFOcount=1;
+ while(UFOcount<37){
+   
+drawUFO(X+25,Y,s);
+
+x=x+125;
+ if(x<1120){
+   x=x+0;
+ }
+ else{
+   x=0;
+    y=y+75;
+ }
+ UFOcount+=1;
+ }
+
 
 int count=1;
  while(count<5){
    float s = random(0.5, 1.5);
- house(x, y+450,s); 
+ house(x+10, y+250,s); 
 
- x=x+300;
+ x=x+250;
  if(x<1000){
    x=x+0;
  }
@@ -53,7 +69,7 @@ void draw(){
 
 void house(float x, float y, float s) {
   pushMatrix(); 
-  translate(x, y); 
+  translate(x+50, y); 
  scale(s);
   
 float r,  g,  b;
@@ -124,7 +140,7 @@ b= random(0,255);
 
 void drawStar() {
   int starCount = 0;
-  while (starCount < 222) {
+  while (starCount < 1350) {
     float x = random(width);
     float y = random(height);
     float size = random(1, 3);
@@ -141,14 +157,14 @@ void rectstar() {
   while (rectstarCount < 345) {
     float x = random(width);
     float y = random(height);
-    float size = random(0.5,5);
+    float size = random(0.5,3.9);
    
      pushMatrix(); 
    translate(width/2, height/2); 
     int  count=0; 
-    while(count<100){
+    while(count<110){
     rotate(radians(angle));
-   fill(122,0,255);
+   fill(4,81,193);
     rect(x,y, size,size);  
     count=count+1;
    angle+=0.5;  
@@ -160,12 +176,30 @@ void rectstar() {
   }
 }
 
+  
+void drawUFO(float x, float y, float s) {
+    pushMatrix(); 
+  translate(x+25, y+25); 
+scale(0.85);
+drawUFObody(); 
+drawUFOdome(); 
+  
+      popMatrix();
+}
 
-//void drawGradient(color c1, color c2) {
-//  for (int y = 0; y < height; y++) {
-//    float inter = map(y, 0, height, 0, 1);
-//    color c = lerpColor(c1, c2, inter);
-//    stroke(c);
-//    line(0, y, width, y);
-//  }
-//}
+
+void drawUFObody(){
+   fill(180, 220, 255);  // UFO body color
+  ellipse(x, y, 40, 15);  // UFO body
+}
+
+
+void drawUFOdome(){
+  
+  
+   fill(255, 255, 180);  // UFO dome color
+  ellipse(x, y - 5, 20, 10);  // UFO dome
+}
+  
+  
+  
