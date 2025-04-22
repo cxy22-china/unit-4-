@@ -153,7 +153,14 @@ void drawStar() {
     float x = random(width);
     float y = random(height);
     float size = random(1, 3);
-    fill(255);
+       float r,  g,  b;
+  
+  r= random(0,255);
+g=random(0,255);
+b= random(0,255);
+   
+   
+   fill(r,g,b);
     ellipse(x, y, size, size);
     starCount = starCount + 1; 
   }
@@ -173,7 +180,14 @@ void rectstar() {
     int  count=0; 
     while(count<110){
     rotate(radians(angle));
-   fill(4,81,193);
+   float r,  g,  b;
+  
+  r= random(0,255);
+g=random(0,255);
+b= random(0,255);
+   
+   
+   fill(r,g,b);
     rect(x,y, size,size);  
     count=count+1;
    angle+=0.5;  
@@ -205,9 +219,14 @@ void drawUFObody(){
 
 
 void drawUFOdome(){
+ 
+  float r,  g,  b;
   
+  r= random(0,255);
+g=random(0,255);
+b= random(0,255);
   
-   fill(255, 255, 180);  // UFO dome color
+   fill(r,g,b);  // UFO dome color
   ellipse(x, y - 5, 20, 10);  // UFO dome
 }
   
