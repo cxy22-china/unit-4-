@@ -86,38 +86,72 @@ y=250;
 void draw() {
 }
 
+void window(float a, float c) {
+  float r, g, b;
+  r = random(0, 255);
+  g = random(0, 255);
+  b = random(0, 255);
+  s = random(0.2, 1);
+
+  fill(r, g, b);
+  stroke(black);
+  rect(a+45, c+110, 20, 20);  // Draw a single window at position (a, c)
+}
+
 void house(float x, float y, float s) {
   pushMatrix();
-  translate(x+50, y);
+  translate(x + 50, y);
   scale(s);
 
+  // House body
   float r, g, b;
-  r= random(0, 255);
-  g=random(0, 255);
-  b= random(0, 255);
-  s= random(.2, 2);
-
+  r = random(0, 255);
+  g = random(0, 255);
+  b = random(0, 255);
+  s = random(0.2, 2);
   body();
 
+  // Roof
   roof();
+  
+  // Call the window function for the first window at (0, 0)
   window(0, 0);
+  
+  // Door
   door();
-  window(45, 0);
-  window(90, 0);
-  window(90+45, 0);
+  
+  // Set initial positions for windows
+  float x2 = 0;  // Adjusted initial X position for window layout
+  float y2 = 0; // Adjusted initial Y position for window layout
+  int count = 1;
 
-  window(90, 0+50);
-  window(45, 0+50);
+  // Loop for additional windows
+  while (count < 5) {
+    // Draw window at (x2, y2)
+    window(x2, y2);
+
+    // Update x2 and y2 to arrange windows in grid layout
+    x2 = x2 + 50;
+    
+    // If x2 exceeds a certain value, move to the next row (y2 position)
+    if (x2 >= 150) {
+      x2 = 50;  // Reset x2 to initial value for new row
+      y2 = y2 + 50;  // Move down one row
+    }
+    
+    count++;
+  }
+  
   popMatrix();
 }
 
+
+
 void body() {
   float r, g, b;
-  r= random(0, 255);
-  g=random(0, 255);
-  b= random(0, 255);
-
-
+  r = random(0, 255);
+  g = random(0, 255);
+  b = random(0, 255);
   fill(r, g, b);
   stroke(black);
   rect(0, 100, 200, 50);
@@ -125,43 +159,23 @@ void body() {
 
 void roof() {
   float r, g, b;
-  r= random(0, 255);
-  g=random(0, 255);
-  b= random(0, 255);
+  r = random(0, 255);
+  g = random(0, 255);
+  b = random(0, 255);
   fill(r, g, b);
   stroke(black);
   triangle(0, 100, 100, 65, 200, 100);
 }
 
-void window(float a, float c) {
-  float r, g, b;
-  r= random(0, 255);
-  g=random(0, 255);
-  b= random(0, 255);
-  s= random(.2, 1);
-
-  fill(r, g, b);
-  stroke(black);
-  int x = 0;
-  while (x < 3) {
-    rect(10 + x+a, 110+c, 20, 20);
-    x = x + 1;
-  }
-}
-
-
-
 void door() {
   float r, g, b;
-  r= random(0, 255);
-  g=random(0, 255);
-  b= random(0, 255);
-
+  r = random(0, 255);
+  g = random(0, 255);
+  b = random(0, 255);
   fill(r, g, b);
   stroke(black);
   rect(30, 150, 135, 35);
 }
-
 
 void drawStar() {
   int starCount = 0;
@@ -236,6 +250,7 @@ void tim(float x, float y, float s) {
   pushMatrix();
   translate(x+25, y+25);
   scale(0.85);
+   
    drawtim(x,y,s);
 
 
@@ -245,11 +260,30 @@ void tim(float x, float y, float s) {
 
 
 
-
 void drawUFObody() {
   fill(180, 220, 255);  // UFO body color
   ellipse(x, y, 40, 15);  // UFO body
+
+
+  int numLights = 8;  // Number of lights
+  float radius = 25;  // Radius around UFO body
+  int i = 0;  // Initialize counter for while loop
+
+ 
+  while (i < numLights) {
+    float angle = i * TWO_PI / numLights;  // Angle for each light
+    float lightX = x + radius * cos(angle);  // X position for light
+    float lightY = y + radius * sin(angle);  // Y position for light
+
+    fill(255,255,0); 
+ 
+    ellipse(lightX, lightY, 5, 5);  // Draw each light as a small ellipse
+
+    i++;  // Increment the counter for the next light
+  }
 }
+
+
 
 
 void drawUFOdome() {
@@ -266,7 +300,10 @@ void drawUFOdome() {
 
 void drawUFObomb() {
   // Bomb body
-  fill(50); // dark grey
+  
+ 
+  rotate(random(0, 2*PI));
+  fill(255); // dark grey
   stroke(0);
   strokeWeight(2);
   ellipse(x, y+350, 20, 20); // bomb body at (x, y)
@@ -292,7 +329,7 @@ void drawtim(float x, float y, float s) {
   pushMatrix();
   translate(x, y);
   scale(s);
-
+  rotate(random(0, 2*PI));
   //  body (greenish color)
   fill(ldb);  
   noStroke();
